@@ -14,9 +14,6 @@ import br.com.hazforge.math.SimpleMath;
 @RestController
 public class MathController {
 
-	private static final String template = "Hello, %s !!";
-	private final AtomicLong counter = new AtomicLong();
-
 	@RequestMapping(value = "/sum/{numberOne}/{numberTwo}", method = RequestMethod.GET)
 	public Double sum(
 			@PathVariable(value = "numberOne") String numberOne,
