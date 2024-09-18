@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 import br.com.hazforge.exceptions.ResourceNotFoundException;
 import br.com.hazforge.mapper.DozerMapper;
+import br.com.hazforge.mapper.custom.PersonMapper;
 import br.com.hazforge.model.Person;
 import br.com.hazforge.data.vo.v1.PersonVO;
+import br.com.hazforge.data.vo.v2.PersonVOV2;
 import br.com.hazforge.repositories.PersonRepository;
 
 @Service
@@ -22,10 +24,21 @@ public class PersonServices {
 	@Autowired
 	PersonRepository repository;
 	
+	@Autowired
+	PersonMapper mapper;
+	
 	public PersonVO create(PersonVO person) {
 		logger.info("Creating one person!");
 		var entity = DozerMapper.parseObject(person, Person.class);
 		var vo = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
+		return vo;
+	}
+	
+	//V2 - Endpoint 
+	public PersonVOV2 createV2(PersonVOV2 person) {
+		logger.info("Creating one person v2! ");
+		var entity = mapper.convertVoToEntity(person);
+		var vo = mapper.convertEntityToVo(repository.save(entity));
 		return vo;
 	}
 	
