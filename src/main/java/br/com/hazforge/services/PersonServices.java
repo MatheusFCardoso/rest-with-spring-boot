@@ -1,6 +1,5 @@
 package br.com.hazforge.services;
 
-import static org.hamcrest.CoreMatchers.endsWith;
 
 import java.util.List;
 import java.util.logging.Logger;
