@@ -29,7 +29,7 @@ public class PersonController {
 	@GetMapping(value = "/{id}",
 			produces = { MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML , MediaType.APPLICATION_YML })
 	public PersonVO findById(
-			@PathVariable Long id) throws Exception  {
+			@PathVariable Long id) {
 		return service.findById(id);
 	}
 	
@@ -43,7 +43,7 @@ public class PersonController {
 	@PostMapping(
 			produces = { MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML , MediaType.APPLICATION_YML },
 			consumes = { MediaType.APPLICATION_JSON , MediaType.APPLICATION_XML , MediaType.APPLICATION_YML })
-	public PersonVO create(@RequestBody PersonVO person) throws Exception  {
+	public PersonVO create(@RequestBody(required = false) PersonVO person) throws Exception  {
 		return service.create(person);
 	}
 	
